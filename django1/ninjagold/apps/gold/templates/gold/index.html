@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ninja Gold</title>
+        {% load static %}
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'gold/css/style.css' %}">
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+
+                <div class="col col-lg-1">
+                    <div class="total"><h4>Your Gold: {{ request.session.gold_count }}</h4></div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col col-md-4"></div>
+                <div class="col col-md-4">
+                    <h1 class="title"> NINJA GOLD </h1>
+                </div>
+                <div class="col col-md-4"></div>
+            </div>
+
+            <div class="row" id="locations">
+
+                <div class="col col-md-3 col-lg-3 col-sm-3">
+
+                    <div id="farm" class="location">
+                        <h3>Farm</h3>
+                        <p>Earns 10-20 gold pieces</p>
+                        <form action="/process_money" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="building" value="farm" />
+                            <input type="submit" value="Find Gold!">
+                        </form>
+                    </div>
+                </div>
+                <div class="col col-md-3 col-lg-3 col-sm-3">
+                    <div id="cave" class="location">
+                        <h3>Cave</h3>
+                        <p>Earns 5-10 gold pieces</p>
+                        <form action="/process_money" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="building" value="cave" />
+                            <input type="submit" value="Find Gold!">
+                        </form>
+                    </div>
+                </div>
+                <div class="ccol col-md-3 col-lg-3 col-sm-3">
+                    <div id="house" class="location">
+                        <h3>House</h3>
+                        <p>Earns 2-5 gold pieces</p>
+                        <form action="/process_money" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="building" value="house" />
+                            <input type="submit" value="Find Gold!">
+                        </form>
+                    </div>
+                </div>
+                <div class="col col-md-3 col-lg-3 col-sm-3">
+                    <div id="casino" class="location">
+                        <h3>Casino</h3>
+                        <p>Earns/Takes 0-50 gold pieces</p>
+                        <form action="/process_money" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="building" value="casino" />
+                            <input type="submit" value="Find Gold!">
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col col-md-12">
+                    <div id="activities">
+                        <div id="activity_log">
+                            <h4>Activities</h4>
+
+                              {% for message in request.session.activities reversed %}
+                                {% if 'lost' in message %}
+                                  <p style="color: red;">{{ message }}</p>
+                                  {% else %}
+                                  <p style="color: green;">{{ message }}</p>
+                                 {% endif %}
+                              {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script src= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Wall ERD</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    </head>
+    <body>
+
+        <h1>Welcome To Blogger</h1>
+        <h3>Create A New Blog Post Here</h3>
+        <form action="/blogs" method="post">
+            {% csrf_token %}
+            <label for="title">Title: </label>
+            <input type="text" name="title">
+            <label for="blog">Blog: </label>
+            <textarea name="blog" rows="8" cols="40"></textarea></label><br>
+            <input type="submit" value="Enter Blog">
+        </form>
+        <br>
+        {% for blog in blogs %}
+            <h3> {{blog.title}} </h3>
+            <p> {{blog.blog}} </p>
+            {% for comment in blog.comment_set.all %}
+                {{comment.comment}} <br>
+            {% endfor %}
+        <form action="/comments/{{blog.id}}" method="post">
+            {% csrf_token %}
+            <label for="comment">Comment On This Blog: </label>
+            <textarea name="comment" rows="8" cols="40"></textarea></label><br>
+            <input type="submit" value="Submit Comment">
+        </form>
+
+        {% endfor %}
+
+
+    </body>
+</html>

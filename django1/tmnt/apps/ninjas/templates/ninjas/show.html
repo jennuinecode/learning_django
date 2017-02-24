@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Disappearing Ninjas</title>
+        {% load static %}
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'ninja_colors/css/style.css' %}">
+
+    </head>
+    <body>
+        {% for key, value in images.items %}
+			{% if value.0 == True %}
+				<img src="{{value.1}}">
+			{% endif %}
+		{% endfor %}
+    </body>
+</html>
