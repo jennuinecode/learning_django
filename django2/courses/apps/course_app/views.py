@@ -6,15 +6,15 @@ def index(request):
     context= {
         'courses': Course.objects.all()
     }
-
+    print Course.objects.all()
     return render(request, 'course_app/index.html', context)
 
 def add(request):
-
+    
     new_course = Course.objects.create(name=request.POST['name'], description=request.POST['description'])
     new_course.save()
     print new_course
-    return redirect('/')
+    return render(request, 'course_app/index.html', context)
 
 # def destroy(request):
 #
