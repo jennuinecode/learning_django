@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Email Validation</title>
+        {% load static %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+        <!-- <link rel="stylesheet" href="{% static 'course_app/css/style.css' %}"> -->
+
+    </head>
+
+    <body>
+        <h1>Email Validation</h1>
+
+        <form action="/register" method="post">
+            {% csrf_token %}
+            <label for="email">Email:</label>
+            <input type="text" name="email">
+            <input type="submit" value="Register">
+            <br>
+
+        </form>
+
+        {% for user in users %}
+            {{user.email}} <br>
+        {% endfor %}
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="{% static 'course_app/js/script.js' %}"></script> -->
+
+    </body>
+</html>
