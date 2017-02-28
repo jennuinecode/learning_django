@@ -20,6 +20,9 @@
             <br>
 
         </form>
+        {% if invalidEmail %}
+            <p> {{invalidEmail}} </p>
+        {% endif %}
 
         {% for user in users %}
             {{user.email}} <br>
