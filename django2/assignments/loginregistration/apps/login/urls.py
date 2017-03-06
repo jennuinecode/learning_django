@@ -5,6 +5,7 @@ urlpatterns = [
     url(r'^$', views.index),
     # url(r'^login/(?P<commonroom>[a-zA-Z]+)$', views.login),
     url(r'^register$', views.register),
-    url(r'^add$', views.add),
+    url(r'^create$', views.create),
+    url(r'^commonroom$', views.commonroom),
 
 ]

@@ -14,13 +14,6 @@
             <li>
                 <form class="navbar-form form-inline pull-right" action="/logout" method="POST">
                     {% csrf_token %}
-
-                    <button type="submit" class="btn btn-primary">logout</button>
-                </form>
-            </li>
-            <li>
-                <form class="navbar-form form-inline pull-right" action="/logout" method="POST">
-                    {% csrf_token %}
                     <button type="submit" class="btn btn-primary">Logout</button>
                 </form>
             </li>
@@ -32,6 +25,8 @@
 
             </div>
         </div>
+
+        <!-- will have a banner for the correct harry potter house -->
         <div class="carousel-inner" role="listbox">
           <div class="item active">
             <img class="img-responsive" src="{{static_path}}" />
