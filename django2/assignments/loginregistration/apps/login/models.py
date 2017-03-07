@@ -1,10 +1,11 @@
 from __future__ import unicode_literals
-import re
 from django.db import models
+import re
+
 
 class StudentManager(models.Manager):
 
-    def validateRegistration(self, data):
+    def registerStudent(self, data):
 
         print data
 
@@ -27,6 +28,13 @@ class StudentManager(models.Manager):
         else:
             student =  Student.objects.create(house=data['house'], first_name=data['first_name'], last_name=data['last_name'], email=data['email'], password=data['password'])
             return (True, student)
+
+    def loginStudent(self, email, password):
+
+        
+
+
+
 
 
 class Student(models.Model):

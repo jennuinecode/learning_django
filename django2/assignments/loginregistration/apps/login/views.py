@@ -17,7 +17,7 @@ def create(request):
     # static_path = "../static/login/images/{}.jpg".format(request.POST['house'])
 
     if request.method == 'POST':
-        response = Student.objects.validateRegistration(request.POST)
+        response = Student.objects.registerStudent(request.POST)
         if response[0] == False:
             for err in response[1]:
                 messages.error(request,err)
