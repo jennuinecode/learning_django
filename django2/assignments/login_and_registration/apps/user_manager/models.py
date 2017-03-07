@@ -35,12 +35,12 @@ class UserManager(models.Manager):
 
 		return (False, errors)
 
-	def validate_and_add(self, data):
+	def validate_registration(self, data):
 		#initialize error handler
 		errors = []
 		#unpack data
-		first = data['first-name']
-		last = data['last-name']
+		first = data['first_name']
+		last = data['last_name']
 		email = data['email']
 		password = data['password']
 
@@ -51,12 +51,10 @@ class UserManager(models.Manager):
 			errors.append("Please enter a valid first name.")
 		if len(last) < 2:
 			errors.append("Please enter a last name.")
-		elif not last.isalpha():
-			errors.append("Please enter a valid last name.")
 		if len(email) < 1:
 			errors.append("Please enter an email address.")
-		elif not EMAIL_REGEX.match(email):
-			errors.append("Please enter a valid email address.")
+		elif not re.match( r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
+			errors.append("Please enter a valid email address")
 		if len(password) < 8:
 			errors.append("Please enter a valid password.")
 
@@ -70,7 +68,7 @@ class UserManager(models.Manager):
 				#if all else passes hash password
 				pw_hash = self.hash_password(data['password'])
 				#create user with hashed password
-				user = self.create_user(data['house'], data['first-name'], data['last-name'], data['email'], pw_hash)
+				user = self.create_user(data['house'], data['first_name'], data['last_name'], data['email'], pw_hash)
 				return (True, user)
 		else:
 			print "triggered w/errors"

@@ -10,7 +10,7 @@ def success(request):
 
 def register(request):
 	if request.method == "POST":
-		valid, response = User.objects.validate_and_add(request.POST)
+		valid, response = User.objects.validate_registration(request.POST)
 		if valid:
 			messages.success(request, "Hello {}! Welcome to {}".format(response.first_name, response.house))
 			request.session['user_id'] = response.id
