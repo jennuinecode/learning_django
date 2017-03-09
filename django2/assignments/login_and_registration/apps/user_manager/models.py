@@ -3,11 +3,9 @@ from django.db import models
 
 import re
 import bcrypt
-EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
-# Create your models here.
 class UserManager(models.Manager):
-	#define user creation for use in other models functions
+
 	def create_user(self, house, first, last, email, pw_hash):
 		user = self.create(house=house,first_name=first, last_name=last, email=email, pw_hash=pw_hash)
 		return user
@@ -15,16 +13,12 @@ class UserManager(models.Manager):
 	def hash_password(self, password):
 		password = password.encode()
 		hashed_pw = bcrypt.hashpw(password, bcrypt.gensalt())
-		# print hashed_pw
 		return hashed_pw
 
 	def login_check(self, data):
-		#initialize error handler
 		errors=[]
-		#unpack data
 		email = data['email']
 		password = data['password'].encode()
-		#run validations
 		try:
 			user = self.get(email=email)
 			hashed_pw = user.pw_hash.encode()
@@ -36,19 +30,14 @@ class UserManager(models.Manager):
 		return (False, errors)
 
 	def validate_registration(self, data):
-		#initialize error handler
 		errors = []
-		#unpack data
 		first = data['first_name']
 		last = data['last_name']
 		email = data['email']
 		password = data['password']
 
-		#run validations
 		if len(first) < 2:
 			errors.append("Please enter a first name.")
-		elif not first.isalpha():
-			errors.append("Please enter a valid first name.")
 		if len(last) < 2:
 			errors.append("Please enter a last name.")
 		if len(email) < 1:
@@ -56,22 +45,18 @@ class UserManager(models.Manager):
 		elif not re.match( r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
 			errors.append("Please enter a valid email address")
 		if len(password) < 8:
-			errors.append("Please enter a valid password.")
+			errors.append("Password must have atleast 8 characters")
 
 		if not errors:
-			#Once form is validated, check to see if user exists.
 			try:
 				matches = self.get(email=email)
 				errors.append("A user already exists with that email.")
 				return (False, errors)
 			except:
-				#if all else passes hash password
 				pw_hash = self.hash_password(data['password'])
-				#create user with hashed password
 				user = self.create_user(data['house'], data['first_name'], data['last_name'], data['email'], pw_hash)
 				return (True, user)
 		else:
-			print "triggered w/errors"
 			return (False, errors)
 
 
