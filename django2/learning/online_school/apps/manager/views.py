@@ -14,7 +14,7 @@ def register(request):
 		if valid:
 			messages.success(request, "Hello {}! Welcome to {}".format(response.first_name, response.house))
 			request.session['user_id'] = response.id
-			return redirect('/success')
+			return redirect('manager:success')
 		else:
 			for error in response:
 				messages.error(request, error)
