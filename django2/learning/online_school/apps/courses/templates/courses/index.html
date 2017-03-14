@@ -4,47 +4,99 @@
         <meta charset="utf-8">
         <title>Courses</title>
         {% load static %}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
 
     </head>
     <body>
-        <div class="add_course">
-            <h1>Hogwarts Courses</h1>
-            <h5>Add New Course:</h5>
-            <form action="{% urls 'courses:add '%}" method="post">
-                {% csrf_token %}
-                <label for="name">Name: </label>
-                <input type="text" name="name">
-                <label for="description">Description: </label><br>
-                <textarea name="description" cols="40" rows="4"></textarea><br>
-                <input type="submit" value="Add">
-            </form>
-        </div>
-        <div id="allcourses">
-            <table>
-                <tr>
-                    <th><h3>Course</h3></th>
-                    <th><h3>Description</h3></th>
-                    <th><h3>Date Added</h3></th>
-                    <th><h3>Action</h3></th>
-                </tr>
-                <tr>
-                {% for course in courses %}
-                    <td>{{course.name}}</td>
-                    <td>{{course.description}}</td>
-                    <td>{{course.created_at}}</td>
-                    <td>
-                        <form action="{% urls 'courses:remove'%}" method="post">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <!-- <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul> -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form class="navbar-form form-inline pull-right" action="{% url 'manager:logout' %}" method="POST">
                             {% csrf_token %}
-                            <input id="remove" type="submit" value="Remove">
+                            <button type="submit" class="btn btn-primary">Logout</button>
                         </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
+                    </li>
+                </ul>
+            </div>
         </div>
 
+        <center><img class="img-responsive" src="{{static_path}}" width="200px"/></center>
+		<center>Welcome to {{house}}, {{ first_name }}.</center>
+
+            <div class="container">
+                <div class="row main">
+                    <div class="panel-heading">
+                       <div class="panel-title text-center">
+                            <h1 class="title">Register For Classes</h1>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="main-login main-center">
+
+                        <form class="form-horizontal" method="post" action="{% url 'courses:add' %}">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label for="name" class="cols-sm-2 control-label">Course Name:</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="first_name" id="first_name"  placeholder="Enter your First Name"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description" class="cols-sm-2 control-label">Course Description</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="last_name" id="last_name"  placeholder="Enter your Last Name"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+            <div class="cols-sm-10">
+                <table>
+                    <tr>
+                        <th><h4>Course</h4></th>
+                        <th><h4>Description</h4></th>
+                        <th><h4>Date Added</h4></th>
+                        <th><h4>Action</h4></th>
+                    </tr>
+                    <tr>
+                    {% for course in courses %}
+                        <td>{{course.name}}</td>
+                        <td>{{course.description}}</td>
+                        <td>{{course.created_at}}</td>
+                        <td>
+                            <form action="{% url 'courses:remove'%}" method="post">
+                                {% csrf_token %}
+                                <input id="remove" type="submit" value="Remove">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

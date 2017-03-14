@@ -11,7 +11,7 @@
 
     <center><h1>WELCOME TO HOGWARTS</H1></center>
 	{% for message in messages %}
-		{{ message }}
+		<center>{{ message }}</center>
 	{% endfor %}
 
         <div class="container">
@@ -103,7 +103,7 @@
             </div>
             <div class="main-login main-center">
 
-                <form class="form-horizontal" method="post" action="{% 'manager:login' %}">
+                <form class="form-horizontal" method="post" action="{% url 'manager:login' %}">
                     {% csrf_token %}
 
                     <div class="form-group">
