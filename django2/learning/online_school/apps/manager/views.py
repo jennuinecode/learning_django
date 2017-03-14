@@ -8,6 +8,9 @@ def index(request):
 def success(request):
 	return render(request, 'manager/index.html')
 
+def registration(request):
+	return render(request, 'manager/registration.html')
+
 def register(request):
 	if request.method == "POST":
 		valid, response = User.objects.validate_registration(request.POST)

@@ -8,92 +8,95 @@
 
     </head>
 <body>
-
-    <center><h1>WELCOME TO HOGWARTS</H1></center>
 	{% for message in messages %}
 		<center>{{ message }}</center>
 	{% endfor %}
 
-        <div class="container">
-            <div class="row main">
-                <div class="panel-heading">
-                   <div class="panel-title text-center">
-                        <h1 class="title">Register</h1>
-                        <hr />
-                    </div>
+
+    <body>
+
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"><img class="img-responsive" src="{% static 'manager/images/logo.png' %}" width="50px" height="50px"/></a>
+
                 </div>
-                <div class="main-login main-center">
-
-                    <form class="form-horizontal" method="post" action="{% url 'manager:register' %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="name" class="cols-sm-2 control-label">Choose Your House:</label>
-                            <div class="cols-sm-10">
-								<div class="input-group">
-                                    <select id="house" name="house" class="form-control input-md">
-                                        <option value="Ravenclaw">Ravenclaw</option>
-                                        <option value="Gryffindor">Gryffindor</option>
-                                        <option value="Slytherin">Slytherin</option>
-                                        <option value="Hufflepuff">Hufflepuff</option>
-                                    </select>
-								</div>
-							</div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="name" class="cols-sm-2 control-label">Your First Name</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="first_name" id="first_name"  placeholder="Enter your First Name"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="name" class="cols-sm-2 control-label">Your Last Name</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="last_name" id="last_name"  placeholder="Enter your Last Name"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email" class="cols-sm-2 control-label">Your Email</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password" class="cols-sm-2 control-label">Password</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group ">
-                            <button type="submit" class="btn btn-faded btn-lg btn-block login-button">Register</button>
-                        </div>
-
-                    </form>
-                    {% for error in errors %}
-                        {{errors}}
-                    {% endfor %}
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <!-- <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul> -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <form class="navbar-form form-inline pull-right" action="{% url 'manager:login' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="text" name="email" placeholder="Email">
+                                <input type="password" name="password" placeholder="Password">
+                                <button type="submit" class="btn btn-primary">Sign In</button>
+                            </form>
+                            {% for error in errors %}
+                                {{errors}}
+                            {% endfor %}
+                        </li>
+                        <li>
+                            <form class="navbar-form form-inline pull-right" action="{% url 'manager:registration' %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </div>
-	</div>
+            <br>
+            <br>
 
-    <div class="container">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                </ol>
+
+        <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                  <div class="item active">
+
+                    <img class="img-responsive" src="{% static 'manager/images/hogwarts.jpg' %}"/>
+
+                  </div>
+
+
+                </div>
+
+        <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <center><h1 class="display-3">WELCOME TO HOGWARTS</h1></center>
+                    <center><p class="lead">Hogwarts School of Witchcraft and Wizardry is the British wizarding school, located in the Highlands of Scotland. It takes students from the United Kingdom of Great Britain and Northern Ireland, and Ireland.</p></center>
+                </div>
+            </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        </body>
+    </html>
+
+
+
+
+
+    <!-- <div class="container">
         <div class="row main">
             <div class="panel-heading">
                <div class="panel-title text-center">
@@ -140,4 +143,4 @@
     </div>
 
 </body>
-</html>
+</html> -->
