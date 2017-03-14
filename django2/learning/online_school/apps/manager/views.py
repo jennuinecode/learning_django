@@ -27,12 +27,19 @@ def login(request):
 		valid, response = User.objects.login_check(request.POST)
 		if valid:
 			static_path = "../static/manager/images/{}.jpg" .format(response.house)
+
+			request.session['first_name'] = response.first_name
+			request.session['house'] = response.house
+			request.session['user_id'] = response.id
+
 			context = {
 				'first_name': response.first_name,
 				'house': response.house,
-				'static_path': static_path
+				'static_path': static_path,
 			}
-			request.session['user_id'] = response.id
+			#assigning each house to a bootstrap color so that buttons match house colors
+			print request.session['house']
+
 			return render(request, 'courses/index.html', context)
 		else:
 			for error in response:

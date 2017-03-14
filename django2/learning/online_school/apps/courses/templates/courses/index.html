@@ -4,8 +4,9 @@
         <meta charset="utf-8">
         <title>Courses</title>
         {% load static %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 
     </head>
     <body>
@@ -20,7 +21,7 @@
                     <li>
                         <form class="navbar-form form-inline pull-right" action="{% url 'manager:logout' %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Logout</button>
+                            <button type="submit" id="{{request.session.house}}" class="btn btn-primary">Logout</button>
                         </form>
                     </li>
                 </ul>
@@ -28,7 +29,7 @@
         </div>
 
         <center><img class="img-responsive" src="{{static_path}}" width="200px"/></center>
-		<center>Welcome to {{house}}, {{ first_name }}.</center>
+		<center>Welcome to {{request.session.house}}, {{ request.session.first_name }}.</center>
 
             <div class="container">
                 <div class="row main">
@@ -64,7 +65,7 @@
                             </div>
 
                             <div class="form-group ">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                                <button type="submit" id="{{request.session.house}}" class="btn-lg btn-block login-button">Register</button>
                             </div>
 
                         </form>

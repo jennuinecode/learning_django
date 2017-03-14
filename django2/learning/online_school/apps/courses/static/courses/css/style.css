@@ -1,5 +1,16 @@
-th {
-    text-align: center;
-    padding-right: 15em;
-    border: 1px black solid;
+
+#Ravenclaw{
+    background-color: #31608F;
+}
+
+#Gryffindor {
+    background-color: #8C1111;
+}
+
+#Slytherin {
+    background-color: #256322;
+}
+
+#Hufflepuff {
+    background-color: #DBC158;
 }
