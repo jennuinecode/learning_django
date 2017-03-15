@@ -1,14 +1,15 @@
 from __future__ import unicode_literals
 from django.db import models
+from ..courses.models import Course
 
 import re
 import bcrypt
 
-class UserManager(models.Manager):
+class StudentManager(models.Manager):
 
-	def create_user(self, house, first, last, email, pw_hash):
-		user = self.create(house=house,first_name=first, last_name=last, email=email, pw_hash=pw_hash)
-		return user
+	def create_student(self, house, first, last, email, pw_hash):
+		student = self.create(house=house,first_name=first, last_name=last, email=email, pw_hash=pw_hash)
+		return student
 
 	def hash_password(self, password):
 		password = password.encode()
@@ -20,10 +21,10 @@ class UserManager(models.Manager):
 		email = data['email']
 		password = data['password'].encode()
 		try:
-			user = self.get(email=email)
-			hashed_pw = user.pw_hash.encode()
+			student = self.get(email=email)
+			hashed_pw = student.pw_hash.encode()
 			if bcrypt.hashpw(password, hashed_pw) == hashed_pw:
-				return (True, user)
+				return (True, student)
 		except:
 			errors.append("Incorrect email or password")
 
@@ -50,22 +51,23 @@ class UserManager(models.Manager):
 		if not errors:
 			try:
 				matches = self.get(email=email)
-				errors.append("A user already exists with that email.")
+				errors.append("A student already exists with that email.")
 				return (False, errors)
 			except:
 				pw_hash = self.hash_password(data['password'])
-				user = self.create_user(data['house'], data['first_name'], data['last_name'], data['email'], pw_hash)
-				return (True, user)
+				student = self.student(data['house'], data['first_name'], data['last_name'], data['email'], pw_hash)
+				return (True, student)
 		else:
 			return (False, errors)
 
 
-class User(models.Model):
+class Student(models.Model):
 	house = models.CharField(max_length=100)
 	first_name = models.CharField(max_length=255)
 	last_name = models.CharField(max_length=255)
 	email = models.CharField(max_length=255)
+	courses = models.ForeignKey(Course, related_name="registered_course", null=True)
 	pw_hash = models.CharField(max_length=255)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
-	objects = UserManager()
+	objects = StudentManager()

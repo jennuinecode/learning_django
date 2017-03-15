@@ -1,0 +1,49 @@
+#Gryffindor {
+    font-family: 'Raleway', sans-serif;
+    color: 8C1111;
+    padding-top: 1.5em;
+    font-size: 2em;
+}
+#Ravenclaw{
+    font-family: 'Raleway', sans-serif;
+    color: 31608F;
+    padding-top: 1.5em;
+    padding-left: 15em;
+    font-size: 2em;
+}
+
+#Hufflepuff {
+    font-family: 'Raleway', sans-serif;
+    color: DBC158;
+    padding-top: 1.5em;
+    font-size: 2em;
+}
+
+#Slytherin {
+    font-family: 'Raleway', sans-serif;
+    color: #256322;;
+    padding-top: 1.5em;
+    padding-left: 15em;
+    font-size: 2em;
+}
+
+p {
+    font-family: 'Raleway', sans-serif;
+}
+
+
+.full-width {
+    width: 100%;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 0;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 100%;
+}

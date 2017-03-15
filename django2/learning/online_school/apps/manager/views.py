@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import User
+from .models import Student
 # Create your views here.
 def index(request):
 	return render(request, 'manager/index.html')
@@ -13,7 +13,7 @@ def registration(request):
 
 def register(request):
 	if request.method == "POST":
-		valid, response = User.objects.validate_registration(request.POST)
+		valid, response = Student.objects.validate_registration(request.POST)
 		if valid:
 			messages.success(request, "Congrats, {}! You've successfully registered! Now Log In!".format(response.first_name))
 			request.session['user_id'] = response.id
@@ -27,7 +27,7 @@ def register(request):
 def login(request):
 	if request.method == "POST":
 
-		valid, response = User.objects.login_check(request.POST)
+		valid, response = Student.objects.login_check(request.POST)
 		if valid:
 			static_path = "../static/manager/images/{}.jpg" .format(response.house)
 
