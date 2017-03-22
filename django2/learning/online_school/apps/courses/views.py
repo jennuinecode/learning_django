@@ -15,7 +15,7 @@ def add(request):
 
     print "added!!!!! ********************************"
 
-    return redirect('manager:success')
+    return redirect('manager:home')
 
 
 # def remove(request, id):
