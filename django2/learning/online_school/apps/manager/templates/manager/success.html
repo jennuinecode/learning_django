@@ -14,7 +14,7 @@
 	{% endfor %}</center>
 	<br>
 	<br>
-	<form method="POST" action="{% urls 'manager:logout '%}">
+	<form method="POST" action="{% url 'manager:logout '%}">
 		{% csrf_token %}
 		<div class="form-group ">
 			<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Logout</button>

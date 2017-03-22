@@ -5,24 +5,26 @@ def index(request):
     context= {
         'courses': Course.objects.all()
     }
-    return render(request, 'courses:index', context)
+    return render(request, 'courses/index.html', context)
 
 
 def add(request):
     print "made it to add function ********************************"
 
-    Course.objects.create(name=request.POST['name'], description=request.POST['description'])
+    Course.objects.create(name=request.POST['name'],  description=request.POST['description'])
+
+    print "added!!!!! ********************************"
 
     return redirect('courses:index')
 
 
-def remove(request, id):
-    context= {
-        'courses': Course.objects.filter(id=id)
-    }
-    course = Course.objects.get(id=id)
-
-    return render(request, 'courses:remove', context)
+# def remove(request, id):
+#     context= {
+#         'courses': Course.objects.filter(id=id)
+#     }
+#     course = Course.objects.get(id=id)
+#
+#     return render(request, 'courses/remove.html', context)
 
 
 def confirm(request, id):
@@ -33,4 +35,4 @@ def confirm(request, id):
 
     Course.objects.filter(id=id).delete()
 
-    return render(request, 'courses:index')
+    return render(request, 'courses/index.html')

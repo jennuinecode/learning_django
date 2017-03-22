@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-from ..courses.models import Course
+# from ..courses.models import Course
 
 import re
 import bcrypt
@@ -66,7 +66,7 @@ class Student(models.Model):
 	first_name = models.CharField(max_length=255)
 	last_name = models.CharField(max_length=255)
 	email = models.CharField(max_length=255)
-	courses = models.ForeignKey(Course, related_name="registered_course", null=True)
+	# courses = models.ManyToManyField(Course, related_name="registered_course", null=True)
 	pw_hash = models.CharField(max_length=255)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
