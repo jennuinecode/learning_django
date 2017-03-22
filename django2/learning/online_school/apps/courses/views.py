@@ -15,7 +15,7 @@ def add(request):
 
     print "added!!!!! ********************************"
 
-    return redirect('courses:index')
+    return redirect('manager:success')
 
 
 # def remove(request, id):

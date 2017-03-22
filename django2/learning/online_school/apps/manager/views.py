@@ -43,7 +43,7 @@ def login(request):
 			#assigning each house to a bootstrap color so that buttons match house colors
 			print request.session['house']
 
-			return render(request, 'courses/index.html', context)
+			return render(request, 'manager/home.html', context)
 		else:
 			for error in response:
 				messages.error(request, error)

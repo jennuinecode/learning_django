@@ -55,7 +55,7 @@ class StudentManager(models.Manager):
 				return (False, errors)
 			except:
 				pw_hash = self.hash_password(data['password'])
-				student = self.student(data['house'], data['first_name'], data['last_name'], data['email'], pw_hash)
+				student = self.create_student(data['house'], data['first_name'], data['last_name'], data['email'], pw_hash)
 				return (True, student)
 		else:
 			return (False, errors)
