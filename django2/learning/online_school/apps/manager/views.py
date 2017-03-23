@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Student
+from ..courses.models import Course
+
 # Create your views here.
 def index(request):
 	return render(request, 'manager/index.html')
@@ -29,27 +31,31 @@ def login(request):
 
 		valid, response = Student.objects.login_check(request.POST)
 		if valid:
-			static_path = "../static/manager/images/{}.jpg" .format(response.house)
+
 
 			request.session['first_name'] = response.first_name
 			request.session['house'] = response.house
 			request.session['user_id'] = response.id
 
-			context = {
-				'first_name': response.first_name,
-				'house': response.house,
-				'static_path': static_path,
-			}
-			#assigning each house to a bootstrap color so that buttons match house colors
+
 			print request.session['house']
 
-			return render(request, 'manager/home.html', context)
+			return redirect('manager:home')
 		else:
 			for error in response:
 				messages.error(request, error)
 
 	return redirect('manager:index')
 
+def home(request):
+
+
+	context = {
+		'static_path': "../static/manager/images/{}.jpg".format(request.session['house']),
+		'courses' : Course.objects.all()
+	}
+
+	return render(request, 'manager/home.html', context)
 
 def logout(request):
     if request.method == "POST":

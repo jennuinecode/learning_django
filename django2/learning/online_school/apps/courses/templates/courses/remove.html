@@ -13,7 +13,7 @@
         <h5>Name:</h5> <p>{{course.name}}</p>
         <h5>Description:</h5> <p>{{course.description}}</p>
 
-        <form action="{% urls 'courses:confirm'%}" method="post">
+        <form action="{% url 'courses:confirm' course.id %}" method="post">
             {% csrf_token %}
             <input type="submit" value="Confirm">
         </form>

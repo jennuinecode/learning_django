@@ -66,7 +66,7 @@ class Student(models.Model):
 	first_name = models.CharField(max_length=255)
 	last_name = models.CharField(max_length=255)
 	email = models.CharField(max_length=255)
-	# courses = models.ManyToManyField(Course, related_name="registered_course", null=True)
+	# courses 
 	pw_hash = models.CharField(max_length=255)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)

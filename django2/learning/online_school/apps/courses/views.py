@@ -9,21 +9,16 @@ def index(request):
 
 
 def add(request):
-    print "made it to add function ********************************"
+    # creates new class or stuents to register to
 
 
-    static_path = "../static/manager/images/{}.jpg".format(response.house)
     Course.objects.create(name=request.POST['name'],  description=request.POST['description'])
 
-    context = {
-        'courses': Course.objects.all(),
-        'static_path': static_path
+    return redirect('manager:home')
 
-    }
-    print "added!!!!! ********************************"
-
-    return render(request, 'manager/home.html', context)
-
+def join(request):
+    # allows students to join available courses
+    pass
 
 def remove(request, id):
     context= {
@@ -35,11 +30,10 @@ def remove(request, id):
 
 
 def confirm(request, id):
-    context= {
-        'courses': Course.objects.filter(id=id)
-    }
+
+
     course = Course.objects.get(id=id)
 
-    Course.objects.filter(id=id).delete()
+    course.delete()
 
-    return render(request, 'courses/index.html')
+    return redirect('manager:home')
