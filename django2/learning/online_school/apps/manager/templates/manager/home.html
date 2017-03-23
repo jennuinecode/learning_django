@@ -88,7 +88,7 @@
                         <td>{{course.description}}</td>
                         <td>{{course.created_at}}</td>
                         <td>
-                            <form action="{% url 'courses:remove/{{course.id}}' %}" method="post">
+                            <form action="{% url 'courses:remove' course.id %}" method="post">
                                 {% csrf_token %}
                                 <input id="remove" type="submit" value="Remove">
                             </form>

@@ -11,20 +11,27 @@ def index(request):
 def add(request):
     print "made it to add function ********************************"
 
+
+    static_path = "../static/manager/images/{}.jpg".format(response.house)
     Course.objects.create(name=request.POST['name'],  description=request.POST['description'])
 
+    context = {
+        'courses': Course.objects.all(),
+        'static_path': static_path
+
+    }
     print "added!!!!! ********************************"
 
-    return redirect('manager:home')
+    return render(request, 'manager/home.html', context)
 
 
-# def remove(request, id):
-#     context= {
-#         'courses': Course.objects.filter(id=id)
-#     }
-#     course = Course.objects.get(id=id)
-#
-#     return render(request, 'courses/remove.html', context)
+def remove(request, id):
+    context= {
+        'courses': Course.objects.filter(id=id)
+    }
+    course = Course.objects.get(id=id)
+
+    return render(request, 'courses/remove.html', context)
 
 
 def confirm(request, id):
