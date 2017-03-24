@@ -17,7 +17,7 @@ def add(request):
     return redirect('manager:home')
 
 def join(request):
-    # allows students to join available courses
+
     pass
 
 def edit(request):

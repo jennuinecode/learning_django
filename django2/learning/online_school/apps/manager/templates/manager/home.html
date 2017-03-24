@@ -42,12 +42,7 @@
                     <li><a href="#">Contact</a></li>
                 </ul> -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <form class="navbar-form form-inline pull-right" action="{% url 'manager:logout' %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" id="{{request.session.house}}" class="btn btn-primary">View Class Schedule</button>
-                        </form>
-                    </li>
+
                     <li>
                         <form class="navbar-form form-inline pull-right" action="{% url 'manager:logout' %}" method="POST">
                             {% csrf_token %}
@@ -106,15 +101,25 @@
 
                 <div class="container">
                     <div class="row main">
-                        <div class="panel-heading">
-                           <div class="panel-title text-center">
-                                <h1 class="title">Available Courses</h1>
-                                <hr />
+                        <div class="col-6 col-lg-6">
+                            <div class="panel-heading">
+                               <div class="panel-title text-center">
+                                    <h1 class="title">Available Courses</h1>
+                                    <hr />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-6">
+                            <div class="panel-heading">
+                               <div class="panel-title text-center">
+                                    <h1 class="title">Student's Courses</h1>
+                                    <hr />
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-lg-12">
+                        <div class="col-6 col-lg-6">
                             <table>
                                 <tr>
                                     <th><h4>Course</h4></th>
@@ -134,7 +139,7 @@
                                                 <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Remove</button>
                                             </div>
                                         </form>
-                                        <!-- <form action="{% url 'courses:join' course.id %}" method="post">
+                                        <form action="{% url 'courses:join' course.id %}" method="post">
                                             {% csrf_token %}
                                             <div class="form-group ">
                                                 <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Join</button>
@@ -145,7 +150,44 @@
                                             <div class="form-group ">
                                                 <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Edit</button>
                                             </div>
-                                        </form> -->
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div class="col-6 col-lg-6">
+                            <table>
+                                <tr>
+                                    <th><h4>Course</h4></th>
+                                    <th><h4>Description</h4></th>
+                                    <th><h4>Date Added</h4></th>
+                                    <th><h4>Action</h4></th>
+                                </tr>
+                                <tr>
+                                {% for course in courses %}
+                                    <td>{{course.name}}</td>
+                                    <td>{{course.description}}</td>
+                                    <td>{{course.created_at}}</td>
+                                    <td>
+                                        <form action="{% url 'courses:remove' course.id %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group ">
+                                                <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Remove</button>
+                                            </div>
+                                        </form>
+                                        <form action="{% url 'courses:join' course.id %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group ">
+                                                <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Join</button>
+                                            </div>
+                                        </form>
+                                        <form action="{% url 'courses:edit' course.id %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group ">
+                                                <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Edit</button>
+                                            </div>
+                                        </form>
                                     </td>
                                 </tr>
                                 {% endfor %}
