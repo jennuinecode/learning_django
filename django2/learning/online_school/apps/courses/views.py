@@ -27,10 +27,6 @@ def join(request, id):
     my_course.students.add(student)
     my_course.save()
 
-
-
-
-
     return redirect('manager:home')
 
 
@@ -39,13 +35,14 @@ def edit(request, id):
     pass
 
 def drop(request, id):
-    pass
+
 
     user_id = request.session['user_id']
 
     my_course = Course.objects.get(id=id)
     student = Student.objects.get(id=user_id)
     my_course.students.remove(student)
+    my_course.save()
 
 
     return redirect('manager:home')

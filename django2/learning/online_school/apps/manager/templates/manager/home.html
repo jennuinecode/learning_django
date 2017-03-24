@@ -170,9 +170,12 @@
                                     <td>{{class.name}}</td>
                                     <td>{{class.description}}</td>
                                     <td>
-
-
-
+                                        <!-- <form action="{% url 'courses:drop' courses.id %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group ">
+                                                <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Drop</button>
+                                            </div>
+                                        </form> -->
                                     </td>
                                 </tr>
                                 {% endfor %}
