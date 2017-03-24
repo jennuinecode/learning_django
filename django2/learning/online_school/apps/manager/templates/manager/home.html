@@ -156,38 +156,23 @@
                                 {% endfor %}
                             </table>
                         </div>
+
+                        <!-- courses registered to the student -->
                         <div class="col-6 col-lg-6">
                             <table>
                                 <tr>
                                     <th><h4>Course</h4></th>
                                     <th><h4>Description</h4></th>
-                                    <th><h4>Date Added</h4></th>
                                     <th><h4>Action</h4></th>
                                 </tr>
                                 <tr>
-                                {% for course in courses %}
-                                    <td>{{course.name}}</td>
-                                    <td>{{course.description}}</td>
-                                    <td>{{course.created_at}}</td>
+                                {% for class in classes %}
+                                    <td>{{class.name}}</td>
+                                    <td>{{class.description}}</td>
                                     <td>
-                                        <form action="{% url 'courses:remove' course.id %}" method="post">
-                                            {% csrf_token %}
-                                            <div class="form-group ">
-                                                <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Remove</button>
-                                            </div>
-                                        </form>
-                                        <form action="{% url 'courses:join' course.id %}" method="post">
-                                            {% csrf_token %}
-                                            <div class="form-group ">
-                                                <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Join</button>
-                                            </div>
-                                        </form>
-                                        <form action="{% url 'courses:edit' course.id %}" method="post">
-                                            {% csrf_token %}
-                                            <div class="form-group ">
-                                                <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Edit</button>
-                                            </div>
-                                        </form>
+
+
+
                                     </td>
                                 </tr>
                                 {% endfor %}

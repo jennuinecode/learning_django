@@ -49,10 +49,12 @@ def login(request):
 
 def home(request):
 
-
+	student = request.session['user_id']
 	context = {
 		'static_path': "../static/manager/images/{}.jpg".format(request.session['house']),
-		'courses' : Course.objects.all()
+		'courses' : Course.objects.all(),
+		'classes': Course.objects.filter(students=student)
+
 	}
 
 	return render(request, 'manager/home.html', context)
