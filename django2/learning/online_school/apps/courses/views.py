@@ -20,6 +20,10 @@ def join(request):
     # allows students to join available courses
     pass
 
+def edit(request):
+
+    pass
+
 def remove(request, id):
     context= {
         'courses': Course.objects.filter(id=id)
