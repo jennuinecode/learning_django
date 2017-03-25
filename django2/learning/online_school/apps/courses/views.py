@@ -31,8 +31,15 @@ def join(request, id):
 
 
 def edit(request, id):
+    # not running edit capability yet
+    context= {
+        'courses': Course.objects.filter(id=id)
+    }
+    course = Course.objects.get(id=id)
 
-    pass
+    return render(request, 'courses/edit.html', context)
+
+
 
 def drop(request, id):
 
