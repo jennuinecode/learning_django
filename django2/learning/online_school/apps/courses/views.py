@@ -34,10 +34,11 @@ def edit(request, id):
     # not running edit capability yet
 
     if request.method == "GET":
+        course = Course.objects.get(id=id)
         context= {
             'courses': Course.objects.filter(id=id)
         }
-        course = Course.objects.get(id=id)
+        
 
         return render(request, 'courses/edit.html', context)
 

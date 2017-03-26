@@ -21,7 +21,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-12">
-                    <form class="form-horizontal" action="{% url 'courses:edit' course.id   %}" method="get">
+                    <form action="{% url 'courses:edit' course.id %}" method="post">
                         {% csrf_token %}
                         {% for course in courses %}
                         <div class="form-group">
@@ -45,6 +45,12 @@
                         {% endfor %}
                         <div class="form-group ">
                             <button type="submit" id="{{request.session.house}}" class="btn-lg btn-block login-button">Update Course</button>
+                        </div>
+                    </form>
+                    <form class="form-horizontal" action="{% url 'manager:home'   %}" method="get">
+                        {% csrf_token %}
+                        <div class="form-group ">
+                            <button type="submit" id="{{request.session.house}}" class="btn-lg btn-block login-button">Return Home</button>
                         </div>
                     </form>
                 </div>
