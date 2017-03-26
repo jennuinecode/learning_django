@@ -32,14 +32,18 @@ def join(request, id):
 
 def edit(request, id):
     # not running edit capability yet
-    context= {
-        'courses': Course.objects.filter(id=id)
-    }
-    course = Course.objects.get(id=id)
 
-    return render(request, 'courses/edit.html', context)
+    if request.method == "GET":
+        context= {
+            'courses': Course.objects.filter(id=id)
+        }
+        course = Course.objects.get(id=id)
 
+        return render(request, 'courses/edit.html', context)
 
+    if request.method == "POST":
+        # complete edit operation
+        return redirect('manager:home')
 
 def drop(request, id):
 

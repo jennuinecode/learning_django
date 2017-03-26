@@ -10,8 +10,6 @@
     <body>
 
         <div class="container">
-
-
             <div class="row main">
                 <div class="panel-heading">
                    <div class="panel-title text-center">
@@ -23,7 +21,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-12">
-                    <form class="form-horizontal" method="post" action="{% url 'courses:edit' course:id %}">
+                    <form class="form-horizontal" action="{% url 'courses:edit' course.id   %}" method="get">
                         {% csrf_token %}
                         {% for course in courses %}
                         <div class="form-group">
@@ -44,18 +42,15 @@
                                 </div>
                             </div>
                         </div>
-                        {% for course in courses %}
+                        {% endfor %}
                         <div class="form-group ">
                             <button type="submit" id="{{request.session.house}}" class="btn-lg btn-block login-button">Update Course</button>
                         </div>
                     </form>
                 </div>
             </div>
-
         </div>
-
-        
-        </div>
+    </div>
 
 
 
