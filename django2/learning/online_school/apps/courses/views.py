@@ -38,12 +38,12 @@ def edit(request, id):
         context= {
             'courses': Course.objects.filter(id=id)
         }
-        
+
 
         return render(request, 'courses/edit.html', context)
 
     if request.method == "POST":
-        # complete edit operation
+        print "this is the post method"
         return redirect('manager:home')
 
 def drop(request, id):

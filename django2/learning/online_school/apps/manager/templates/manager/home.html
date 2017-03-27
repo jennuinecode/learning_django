@@ -146,12 +146,11 @@
                                                 <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Join</button>
                                             </div>
                                         </form>
-                                        <form action="{% url 'courses:edit' course.id %}" method="get">
-                                            {% csrf_token %}
-                                            <div class="form-group ">
-                                                <button type="submit" id="{{request.session.house}}" class="btn-sm btn-block login-button">Edit</button>
-                                            </div>
-                                        </form>
+
+                                        <div class="form-group ">
+                                            <a href="{% url 'courses:edit' course.id %}"><button id="{{request.session.house}}" class="btn-sm btn-block login-button">Edit</button></a>
+                                        </div>
+
                                     </td>
                                 </tr>
                                 {% endfor %}
