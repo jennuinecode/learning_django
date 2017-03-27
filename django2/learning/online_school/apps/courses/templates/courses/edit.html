@@ -20,10 +20,11 @@
             </div>
 
             <div class="row">
+                {% for course in courses %}
                 <div class="col-12 col-lg-12">
                     <form action="{% url 'courses:edit' course.id %}" method="post">
                         {% csrf_token %}
-                        {% for course in courses %}
+
                         <div class="form-group">
                             <label for="name" class="cols-lg-2 control-label">Course Name:</label>
                             <div class="cols-lg-6">

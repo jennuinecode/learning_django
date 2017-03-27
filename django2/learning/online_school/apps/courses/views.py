@@ -43,7 +43,13 @@ def edit(request, id):
         return render(request, 'courses/edit.html', context)
 
     if request.method == "POST":
-        print "this is the post method"
+
+        course = Course.objects.get(id=id)
+        course.name = request.POST['name']
+        course.description = request.POST['description']
+        course.save()
+
+
         return redirect('manager:home')
 
 def drop(request, id):
